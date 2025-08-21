@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "852265613983",
+    "project_id": "eghosa-1bbb5",
+    "storage_bucket": "eghosa-1bbb5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852265613983:android:4ad061f84394b61c3a40aa",
+        "android_client_info": {
+          "package_name": "com.example.myapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1oCS-JRkRRBEx9xr8OoIssjSKhd7IusA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
