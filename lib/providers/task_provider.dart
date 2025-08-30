@@ -1,5 +1,4 @@
 import 'package:myapp/services/task_service.dart';
-import 'package:provider/provider.dart';
 import 'package:myapp/models/task.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +9,7 @@ class TaskProvider extends ChangeNotifier {
 
   //populates task list /array with documents from database
   //notifies the root provider of stateful change
-  Future<void> LoadTasks() async {
+  Future<void> loadTasks() async {
     tasks = await taskService.fetchTasks();
     notifyListeners();
   }
@@ -26,23 +25,26 @@ class TaskProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> updateTask(int index, bool completed) async {
-    //uses array index to find tasks
-    final task = tasks[index];
+  Future<void> updateTask(String id, bool completed) async {
     //update the task collection in the database by id, using bool for completed
-    await taskService.updateTask(task.id, completed);
+    await taskService.updateTask(id, completed);
     //updating the local task list
-    tasks[index] = Task(id: task.id, name: task.name, completed: completed);
-    notifyListeners();
+    final index = tasks.indexWhere((task) => task.id == id);
+    if (index != -1) {
+      tasks[index] = Task(
+        id: tasks[index].id,
+        name: tasks[index].name,
+        completed: completed,
+      );
+      notifyListeners();
+    }
   }
 
-  Future<void> removeTask(int index) async {
-    //uses array index to find tasks
-    final task = tasks[index];
+  Future<void> removeTask(String id) async {
     //delete the task from the collection
-    await taskService.deleteTask(task.id);
+    await taskService.deleteTask(id);
     //remote the task from the list in memory
-    tasks.removeAt(index);
+    tasks.removeWhere((task) => task.id == id);
     notifyListeners();
   }
 }

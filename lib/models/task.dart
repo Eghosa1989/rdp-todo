@@ -11,6 +11,6 @@ class Task {
       id: id,
       name: data['name'] ?? '',
       completed: data['completed'] ?? false,
- );
- }
+    );
+  }
 }
